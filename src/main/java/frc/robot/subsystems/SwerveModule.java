@@ -8,7 +8,9 @@ import com.revrobotics.RelativeEncoder;
 import com.revrobotics.SparkAbsoluteEncoder;
 import com.revrobotics.SparkPIDController;
 
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 
 import com.revrobotics.CANSparkBase;
 
@@ -96,6 +98,9 @@ public class SwerveModule {
      public void resetEncoders() {
          driveEncoder.setPosition(0);
          turnEncoder.setPosition(0);
+     }
+     public SwerveModuleState getState() {
+        return new SwerveModuleState(getDriveVelocity(), new Rotation2d().fromDegrees(getAbsolutePosition()));
      }
      
 }
